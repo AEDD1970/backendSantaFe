@@ -9,7 +9,7 @@
         helmet = require('helmet'),
         mongoose = require('mongoose'),
         config = require('./config'),
-        dbConfig = require('.'),
+        dbConfig = require('./conexion'),
         app = express(),
         cors = require('cors')
 

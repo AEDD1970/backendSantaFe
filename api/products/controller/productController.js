@@ -4,11 +4,14 @@ const registerProduct = async (req, res) => {
   try {
     const { name, description, price, quantity } = req.body;
 
+    console.log(name)
+
     const product = await Product.findOne({
       name: { $regex: name, $options: "i" },
     });
+    console.log(product)
     if (product) {
-      res.status(404).json({ message: "Product exist" });
+      res.status(400).json({ message: "Product exist" });
     } else {
       let productData = new Product({
         name,
@@ -20,6 +23,7 @@ const registerProduct = async (req, res) => {
       res.status(201).json({ message: "Product create" });
     }
   } catch (error) {
+    console.log(error)
     res.status(404).json({ message: "Ups! anything went wrong " });
   }
 };
